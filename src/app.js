@@ -1,4 +1,4 @@
-var app = angular.module('AppModule', ['ngRoute', 'http.service', 'metro.directive', 'data.service', 'l10n']);
+var app = angular.module('AppModule', ['ngRoute', 'http.service', 'common', 'metro.directive', 'data.service', 'l10n']);
 
 app.constant('resetMenu', function () {
     var mn = $("#sidebar-left").first();

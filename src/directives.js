@@ -1,6 +1,6 @@
 ﻿(function () {
     'use strict';
-    var metro = angular.module('metro.directive', []);
+    var metro = angular.module('metro.directive', ['common']);
 
     metro.factory('gritter', function () {
         return {
@@ -261,6 +261,22 @@
             link: function (scope, element, attrs, tabsCtrl) {
                 tabsCtrl.addTab(scope);
             },
+        };
+    });
+
+    metro.directive('metroDatepicker', function () {
+        return {
+            //require: '?ngModel',
+            restrict: 'AE',
+            replace: true,
+            scope: {
+                format: '@dpFormat'
+            },
+            template: '<input type="text">',
+            link: function (scope, element, attrs) {
+                var format = attrs["dpFormat"] || "yy/mm/dd";
+                $(element).datepicker({dateFormat: format});
+            }
         };
     });
 

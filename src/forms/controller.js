@@ -5,5 +5,8 @@
 
     $scope.forms = $L("Forms");
 
-    
+    //$scope.startDate = "2009/02/05";
+    $scope.go = function() {
+        console.log($scope.startDate);
+    }
 });

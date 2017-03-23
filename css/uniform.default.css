@@ -20,10 +20,11 @@ div.selector span,
 div.checker span,
 div.radio span, 
 div.uploader, 
-div.uploader span.action,
+div.uploader /*span.action*/,
 div.button,
 div.button span {
-  background-image: url(../img/sprite.png);
+  /*background-image: url(../img/sprite.png);*/
+  border: 1px solid #ccc;
   background-repeat: no-repeat;
   -webkit-font-smoothing: antialiased;
 }
@@ -175,6 +176,17 @@ div.checker.focus.active span {
 
 div.checker span.checked {
   background-position: -76px -260px;
+  /*background-color: #CCCCCC;*/
+  /*content: "\e003";*/  
+}
+
+span.checked:after {
+  content: "\2714";
+  font-weight: 900;
+}
+
+div.checker.disabled{
+    background-color: #eeeeee;
 }
 
 div.checker:active span.checked, 
@@ -436,7 +448,7 @@ div.uploader {
 }
 
 div.uploader span.action {
-  width: 85px;
+  width: 83px;
   text-align: center;
   text-shadow: #fff 0px 1px 0px;
   font-size: 11px;

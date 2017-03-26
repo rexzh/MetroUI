@@ -148,7 +148,7 @@
             scope: {
                 span: '@btnSpan',
                 color: '@btnColor',
-                icon: '@btnIcon',                
+                icon: '@btnIcon',
                 text: '@btnText',
                 note: '@btnNote'
             },
@@ -277,7 +277,49 @@
                 var format = attrs["dpFormat"] || "yy/mm/dd";
                 $(element).datepicker({dateFormat: format});
             }
+            //TODO:disable
         };
+    });
+
+    metro.directive('metroFileInput', function(){
+        return {
+            restrict: 'AE',
+            replace: true,
+            scope: {},
+            template: '<input class="input-file" type="file">',
+            link: function(scope, element, attrs, ngModel) {
+                $(element).uniform();
+                //TODO:ngModel
+                //TODO:disable
+            }
+        }
+    });
+
+    metro.directive('metroCheckbox', function(){
+        return {
+            restrict: 'AE',
+            replace: true,
+            scope: {},
+            template: '<label class="checkbox">' +
+                        '<div class="checker"><span><input type="checkbox"></span></div>' +
+                    '</label>',
+            link: function(scope, element, attrs, ngModel) {
+                $(element).on('click', function(evt){                    
+                    evt.preventDefault();
+                    var cb = $(this).find('input');
+                    var span = $(this).find('span');
+                    var checked = cb.prop('checked');
+                    console.log(checked);
+                    cb.prop('checked', !checked);
+                    if(!checked) 
+                        span.addClass('checked');
+                    else
+                        span.removeClass('checked');
+                });
+                //TODO:ngModel
+                //TODO:disable
+            }
+        }
     });
 
     metro.directive('metroMenu', function($timeout){

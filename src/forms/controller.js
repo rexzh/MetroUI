@@ -8,5 +8,7 @@
     //$scope.startDate = "2009/02/05";
     $scope.go = function() {
         console.log($scope.startDate);
+        console.log($scope.filename);
+        console.log($scope.check);
     }
 });

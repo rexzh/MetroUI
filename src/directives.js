@@ -266,7 +266,6 @@
 
     metro.directive('metroDatepicker', function () {
         return {
-            //require: '?ngModel',
             restrict: 'AE',
             replace: true,
             scope: {
@@ -277,7 +276,6 @@
                 var format = attrs["dpFormat"] || "yy/mm/dd";
                 $(element).datepicker({dateFormat: format});
             }
-            //TODO:disable
         };
     });
 
@@ -285,12 +283,21 @@
         return {
             restrict: 'AE',
             replace: true,
-            scope: {},
+            scope: {
+                disabled: '=ngDisabled'
+            },
             template: '<input class="input-file" type="file">',
             link: function(scope, element, attrs, ngModel) {
                 $(element).uniform();
                 //TODO:ngModel
-                //TODO:disable
+                
+                scope.$watch('disabled', function() {
+                    var div = $(element).parent();
+                    if(scope.disabled)
+                        div.addClass('disabled');
+                    else
+                        div.removeClass('disabled');
+                });
             }
         }
     });
@@ -299,17 +306,19 @@
         return {
             restrict: 'AE',
             replace: true,
-            scope: {},
+            scope: {
+                disabled: '=ngDisabled'
+            },
             template: '<label class="checkbox">' +
                         '<div class="checker"><span><input type="checkbox"></span></div>' +
                     '</label>',
             link: function(scope, element, attrs, ngModel) {
-                $(element).on('click', function(evt){                    
+                $(element).on('click', function(evt) {
+                    if(scope.disabled) return;
                     evt.preventDefault();
                     var cb = $(this).find('input');
                     var span = $(this).find('span');
                     var checked = cb.prop('checked');
-                    console.log(checked);
                     cb.prop('checked', !checked);
                     if(!checked) 
                         span.addClass('checked');
@@ -317,7 +326,14 @@
                         span.removeClass('checked');
                 });
                 //TODO:ngModel
-                //TODO:disable
+                
+                scope.$watch('disabled', function() {
+                    var div = $(element).find('div');
+                    if(scope.disabled)
+                        div.addClass('disabled');
+                    else
+                        div.removeClass('disabled');
+                });
             }
         }
     });

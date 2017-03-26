@@ -473,6 +473,7 @@ div.uploader.disabled span.action {
 div.uploader.disabled span.filename {
   border-color: #ddd;
   color: #aaa;
+  background-color: #eeeeee;
 }
 /*
 

@@ -306,6 +306,7 @@
         return {
             restrict: 'AE',
             replace: true,
+            require: '?ngModel',
             scope: {
                 disabled: '=ngDisabled'
             },
@@ -320,12 +321,27 @@
                     var span = $(this).find('span');
                     var checked = cb.prop('checked');
                     cb.prop('checked', !checked);
+                    
                     if(!checked) 
                         span.addClass('checked');
                     else
                         span.removeClass('checked');
-                });
-                //TODO:ngModel
+
+                    ngModel && scope.$apply(ngModel.$setViewValue(!checked));
+                });                
+                
+                if (ngModel) {
+                    ngModel.$render = function () {
+                        var span = $(element).find('span');
+                        var cb = $(element).find('input');
+                        if(ngModel.$modelValue){
+                            span.addClass('checked');
+                        } else {
+                            span.removeClass('checked');
+                        }
+                        cb.prop('checked', ngModel.$modelValue);
+                    }
+                }
                 
                 scope.$watch('disabled', function() {
                     var div = $(element).find('div');

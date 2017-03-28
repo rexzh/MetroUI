@@ -283,13 +283,24 @@
         return {
             restrict: 'AE',
             replace: true,
+            require: '?ngModel',
             scope: {
                 disabled: '=ngDisabled'
             },
             template: '<input class="input-file" type="file">',
             link: function(scope, element, attrs, ngModel) {
                 $(element).uniform();
-                //TODO:ngModel
+
+                $(element).on('change', function(){
+                    var files = $(element).get(0).files;
+                    ngModel && scope.$apply(ngModel.$setViewValue(files));
+                });
+                
+                if (ngModel) {
+                    ngModel.$render = function () {
+                        $(element).parent().find('span.filename').text(ngModel.$modelValue);
+                    }
+                }
                 
                 scope.$watch('disabled', function() {
                     var div = $(element).parent();

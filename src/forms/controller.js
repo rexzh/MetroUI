@@ -5,10 +5,14 @@
 
     $scope.forms = $L("Forms");
 
-    //$scope.startDate = "2009/02/05";
+    $scope.disabled = false;
+    $scope.check = true;
+    $scope.file = "XDoc";
+
     $scope.go = function() {
-        console.log($scope.startDate);
-        console.log($scope.filename);
-        console.log($scope.check);
+        //$scope.disabled = !$scope.disabled;
+
+        console.log('input:', $scope.file);
+        console.log('checkbox:', $scope.check);
     }
 });

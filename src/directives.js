@@ -273,7 +273,7 @@
             },
             template: '<input type="text">',
             link: function (scope, element, attrs) {
-                var format = attrs["dpFormat"] || "yy/mm/dd";
+                var format = attrs["dpFormat"] || "yy-mm-dd";
                 $(element).datepicker({dateFormat: format});
             }
         };

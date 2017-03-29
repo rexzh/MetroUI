@@ -17,7 +17,7 @@
     <link href="css/bootstrap-responsive.css" rel="stylesheet">
     <link id="base-style" href="css/style.css" rel="stylesheet">
     <link id="base-style-responsive" href="css/style-responsive.css" rel="stylesheet">
-    <link href="css/wait.css" rel="stylesheet">
+    <link href="css/preload.css" rel="stylesheet">
     <!-- end: CSS -->
         
     <!-- start: Favicon -->
@@ -42,21 +42,24 @@
             </div>
         </div>
     </div>
-    <!-- start: Header -->
+    <!-- start: Header -->    
     
     <div class="container-fluid-full">
         <div class="row-fluid">
                 
             <!-- start: Main Menu -->
             <div id="sidebar-left" class="span2" ng-controller="MenuCtrl">
-                <div class="nav-collapse sidebar-nav">                
+                <div class="nav-collapse sidebar-nav">
                     <div metro-menu menu-data="menus" ></div>
                 </div>
             </div>
             <!-- end: Main Menu -->
+
+            
             
             <!-- start: Content -->
             <div id="content" class="span10">
+                <div metro-wait ng-controller="WaitCtrl" ng-show="showWait"></div>
                 <div ng-view></div>
             
             </div><!--/.fluid-container-->
@@ -65,13 +68,7 @@
         </div><!--/#content.span10-->
     </div><!--/fluid-row-->
 
-    <!--
-    <footer style="border-top: 1px solid #666">
-        <p>
-            <span style="text-align:left;float:left">&copy; 2017 <a>RexStudio &#8482;</a></span>
-        </p>
-    </footer>
-    -->
+    
     <!-- start: JavaScript Lib-->
     <script src="lib/jquery-1.9.1.min.js"></script>
     <script src="lib/jquery-migrate-1.0.0.min.js"></script>

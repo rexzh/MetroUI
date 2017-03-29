@@ -2,6 +2,18 @@
     $scope.brand = $L("Generic Platform");
 });
 
+app.controller('WaitCtrl', function ($scope, $L) {
+    $scope.showWait = false;
+
+    $scope.$on('AjaxStart', function(){
+        $scope.showWait = true;
+    });
+
+    $scope.$on('AjaxEnd', function(){
+        $scope.showWait = false;
+    });
+});
+
 app.controller('MenuCtrl', function ($rootScope, $scope, $timeout, $L, gritter) {
     var menus = [
         {"name": "Overview", "items": [{"name": "Dashboard", "icon": "icon-dashboard", "href": "#/dashboard/"}, {"name": "Messages", "icon": "icon-envelope", "href": "#/messages/"}, {"name": "Monitor", "icon": "icon-eye-open", "href": "#/monitor/"}]},

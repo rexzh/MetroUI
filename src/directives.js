@@ -420,6 +420,22 @@
         }
     });
 
+    metro.directive('metroWait', function(){
+        return {
+            restrict: 'AE',
+            replace: true,
+            template: '<div data-role="preloader" data-type="metro" data-style="dark" style="top: -28px;" class="preloader-metro dark-style" ng>' +
+                        '<div class="circle"></div>' +
+                        '<div class="circle"></div>' +
+                        '<div class="circle"></div>' +
+                        '<div class="circle"></div>' +
+                        '<div class="circle"></div>' +
+                    '</div>',
+            link: function(scope, element) {
+            }
+        }
+    });
+
     metro.directive('metroPagination', function () {
         return {
             restrict: 'AE',
@@ -439,7 +455,7 @@
                             '</ul>' +
                             '<div>' +
                                 '<div style="display:inline">&nbsp;Total <span class="pagination-indicator">{{totalRecords}}</span> item(s), <span class="pagination-indicator">{{totalPages}}</span> page(s)</div>' +
-                                '<div style="display:inline;"><input style="vertical-align: baseline; width: 20px" size="4" type="text"/></div>' +
+                                '<div style="display:inline; margin-left: 10px;"><input style="vertical-align: baseline; width: 20px" size="4" type="text"/></div>' +
                                 '<a style="vertical-align: baseline;padding: 4px 12px;" class="btn btn-primary btn-sm" ng-click="goInput()">Go</a>' +
                             '</div>' +
                         '</div>',

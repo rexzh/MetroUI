@@ -18,7 +18,7 @@ app.constant('resize', function(){
     var contentHeight = $("#content").height();
 
     if (winHeight) {
-        $("#content").css("min-height", winHeight - 41 * 2 - 6);
+        $("#content").css("min-height", winHeight/* - 41 * 2 - 6*/);
     }
 
     if (contentHeight) {

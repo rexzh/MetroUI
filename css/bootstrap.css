@@ -2010,7 +2010,7 @@ table {
   padding: 8px;
   line-height: 20px;
   text-align: left;
-  vertical-align: top;
+  /*vertical-align: top;*/
   border-top: 1px solid #dddddd;
 }
 
@@ -2057,6 +2057,10 @@ table {
 .table-bordered th,
 .table-bordered td {
   border-left: 1px solid #dddddd;
+}
+
+th{
+  border-bottom: 2px solid #777;
 }
 
 .table-bordered caption + thead tr:first-child th,

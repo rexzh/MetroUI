@@ -2,8 +2,15 @@
     $scope.brand = $L("Generic Platform");
 });
 
-app.controller('WaitCtrl', function ($scope, $L) {
+app.controller('SystemStatusCtrl', function ($scope, $L) {
     $scope.showWait = false;
+    $scope.showMessage = true;
+
+    $scope.message = {
+        type: 'success',
+        head: 'Attention',
+        detail: '成功'
+    }
 
     $scope.$on('AjaxStart', function(){
         $scope.showWait = true;

@@ -571,4 +571,37 @@
             }
         }
     });
+
+    //TODO:L10N
+    metro.factory('msgbox', function($q, $compile, $rootScope){
+        var html = '<div class="modal hide fade">' +
+                        '<div class="modal-header">' +
+                            '<button type="button" class="close" data-dismiss="modal" ng-click="close(false)">×</button>' +
+                            '<h3>Confirm</h3>' +
+                        '</div>' +
+                        '<div class="modal-body">' +
+                            '<p>Delete?</p>' +
+                        '</div>' +
+                        '<div class="modal-footer">' +
+                            '<a class="btn btn-primary" data-dismiss="modal" ng-click="close(true)">OK</a>' +
+                            '<a class="btn" data-dismiss="modal" ng-click="close(false)">Cancle</a>' +
+                        '</div>' +
+                    '</div>';
+        return {
+            show: function() {
+                var deferred = $q.defer();
+                var element = $(html);
+
+                var scope = $rootScope.$new();
+                $compile(element)(scope);
+
+                scope.close = function (result) {
+                    deferred.resolve(result);
+                };
+
+                element.modal('show');
+                return deferred.promise;
+            }
+        };
+    });
 })();

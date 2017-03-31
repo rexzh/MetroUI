@@ -1,4 +1,4 @@
-﻿app.controller('DashboardCtrl', function ($scope, $rootScope, StatusResource, SystemResource, $interval, $L, resetMenu) {
+﻿app.controller('DashboardCtrl', function ($scope, $rootScope, $interval, $L, resetMenu) {
     var NORMAL = "Normal", WARNING = "Warning", ERROR = "Error", UNKNOWN = "Unknown";
     var mapStatusColor = {
         'Normal': 'green',

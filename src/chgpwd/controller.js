@@ -1,4 +1,4 @@
-﻿app.controller('ChgpwdCtrl', function ($scope, PwdResource, $location, $L, resetMenu) {
+﻿app.controller('ChgpwdCtrl', function ($scope, $location, $L, resetMenu) {
     $scope.resetMenu = resetMenu;
     $scope.home = $L("Home");
     $scope.chgpwd = $L("Password Setting");

@@ -1,4 +1,4 @@
-﻿app.controller('SettingsCtrl', function ($scope, $window, StatusResource, $interval, $L, resetMenu) {
+﻿app.controller('SettingsCtrl', function ($scope, $window, $interval, $L, resetMenu) {
     $scope.resetMenu = resetMenu;
 
     $scope.home = $L("Home");

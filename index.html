@@ -59,7 +59,17 @@
             
             <!-- start: Content -->
             <div id="content" class="span10">
-                <div metro-wait ng-controller="WaitCtrl" ng-show="showWait"></div>
+                <div ng-controller="SystemStatusCtrl">
+                    <div metro-wait ng-show="showWait"></div>
+                    
+                    <div style="margin-top: -26px; margin-bottom: 30px;">
+                        <div class="alert alert-{{message.type}}">
+                            <!--<button type="button" class="close" data-dismiss="alert">×</button>-->
+                            <h4 class="alert-heading">{{message.head}}</h4>
+                            <p>{{message.detail}}</p>
+                        </div>
+                    </div>
+                </div>
                 <div ng-view></div>
             
             </div><!--/.fluid-container-->

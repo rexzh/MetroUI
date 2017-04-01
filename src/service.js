@@ -6,15 +6,16 @@
         var interceptor = {
             request: function(config) {
                 //console.log("request", config);
-                $rootScope.$broadcast('AjaxStart');
+                $rootScope.$broadcast('ajaxStart');
                 return config;
             },
 
             response: function(response) {
-                //if(response.config.url.match(/^(.)*.json/g)) {
-                //}
+                if(response.config.url.match(/^(.)*.json/g)) {
+                    $rootScope.$broadcast("serviceSuccess");
+                }
                 //console.log("response", response);
-                $rootScope.$broadcast('AjaxEnd');
+                $rootScope.$broadcast('ajaxEnd');
                 return response;
             },
 
@@ -22,10 +23,10 @@
                 if(response.status == 401) {
                     //TODO:Auth
                 } else {
-                    //Error
+                    $rootScope.$broadcast("serviceFailure", response);
                 }
                 //console.log("response", response);
-                $rootScope.$broadcast('AjaxEnd');
+                $rootScope.$broadcast('ajaxEnd');
                 return response;
             }
         }

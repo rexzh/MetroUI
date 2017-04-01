@@ -16,7 +16,7 @@
     var count = localStorage.getItem('msgCount') || 10;
     
     $scope.remove = function() {
-        msgbox.show().then(function(x){
+        msgbox.show({text: "删除当前记录?"}).then(function(x){
             if(x)
                 console.log('confirmed');
             else

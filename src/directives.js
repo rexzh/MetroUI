@@ -1,6 +1,6 @@
 ﻿(function () {
     'use strict';
-    var metro = angular.module('metro.directive', ['common']);
+    var metro = angular.module('metro.directive', ['common', 'l10n']);
 
     metro.factory('gritter', function () {
         return {
@@ -572,25 +572,31 @@
         }
     });
 
-    //TODO:L10N
-    metro.factory('msgbox', function($q, $compile, $rootScope){
+    metro.factory('msgbox', function($q, $compile, $rootScope, $interpolate, $L){
         var html = '<div class="modal hide fade">' +
                         '<div class="modal-header">' +
                             '<button type="button" class="close" data-dismiss="modal" ng-click="close(false)">×</button>' +
-                            '<h3>Confirm</h3>' +
+                            '<h3>{{title}}</h3>' +
                         '</div>' +
                         '<div class="modal-body">' +
-                            '<p>Delete?</p>' +
+                            '<p>{{text}}</p>' +
                         '</div>' +
                         '<div class="modal-footer">' +
-                            '<a class="btn btn-primary" data-dismiss="modal" ng-click="close(true)">OK</a>' +
-                            '<a class="btn" data-dismiss="modal" ng-click="close(false)">Cancle</a>' +
+                            '<a class="btn btn-primary" data-dismiss="modal" ng-click="close(true)">' + $L('OK') + '</a>' +
+                            '<a class="btn" data-dismiss="modal" ng-click="close(false)">' + $L('Cancel') + '</a>' +
                         '</div>' +
                     '</div>';
+        var defaultOpts = {
+            title: $L('Confirm'),
+            text: $L('Delete')
+        };
         return {
-            show: function() {
+            show: function(options) {
+                var opt = {};
+                angular.extend(opt, defaultOpts, options);
+
                 var deferred = $q.defer();
-                var element = $(html);
+                var element = $($interpolate(html)(opt));
 
                 var scope = $rootScope.$new();
                 $compile(element)(scope);

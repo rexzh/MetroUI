@@ -54,7 +54,7 @@
 	svc.factory('AboutResource', function ($resource, $q) {
 	    return {
 	        query: function () {
-	            var url = baseUrl + "about/";
+	            var url = baseUrl + "about.json";
 	            return simpleQuery($resource, $q, url);
 	        }
 	    }
@@ -63,7 +63,7 @@
 	svc.factory('AuthResource', function ($q, $http) {
 	    return {
 	        auth: function (pwd) {
-	            var url = baseUrl + "authentication/";
+	            var url = baseUrl + "authentication.json";
 	            var delay = $q.defer();
 	            $http.post(url, { password: pwd }).success(function (data, status) {
 	                delay.resolve(data);
@@ -78,7 +78,7 @@
 	svc.factory('MessageResource', function ($resource, $q) {
 	    return {
 	        query: function (data) {
-	            var url = baseUrl + "messages/";
+	            var url = baseUrl + "messages.json";
 	            return arrayQuery($resource, $q, url);
 	        }
 	    }

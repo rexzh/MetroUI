@@ -2,9 +2,9 @@
     $scope.brand = $L("Generic Platform");
 });
 
-app.controller('SystemStatusCtrl', function ($scope, $L) {
+app.controller('SystemStatusCtrl', function ($scope, $timeout, $L) {
     $scope.showWait = false;
-    $scope.showMessage = true;
+    $scope.showMessage = false;
 
     $scope.message = {
         type: 'success',
@@ -12,12 +12,34 @@ app.controller('SystemStatusCtrl', function ($scope, $L) {
         detail: '成功'
     }
 
-    $scope.$on('AjaxStart', function(){
+    $scope.$on('ajaxStart', function(){
         $scope.showWait = true;
+        $scope.showMessage = false;
     });
 
-    $scope.$on('AjaxEnd', function(){
+    $scope.$on('ajaxEnd', function(){
         $scope.showWait = false;
+    });
+
+    $scope.$on('serviceSuccess', function() {
+        $scope.message = {
+            type: 'success',
+            head: '成功',
+            detail: '成功'
+        }
+        $scope.showMessage = true;
+        $timeout(function(){
+            $scope.showMessage = false;
+        }, 3000);
+    });
+
+    $scope.$on('serviceFailure', function(evt, resp) {
+        $scope.message = {
+            type: 'danger',
+            head: '注意',
+            detail: JSON.stringify(resp)
+        }
+        $scope.showMessage = true;
     });
 });
 
